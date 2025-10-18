@@ -28,5 +28,24 @@ class Tugas {
             die("Error saat membuat tugas: " . $e->getMessage());
         }
     }
+
+    public function getAllTugas() {
+        // Kita juga tambahkan 'mk.nama_matkul' jika Anda sudah mengimplementasikannya
+        // Untuk sekarang, kita join dengan users
+        $sql = "SELECT 
+                    t.id, 
+                    t.judul, 
+                    t.deskripsi, 
+                    t.deadline, 
+                    t.nama_file, 
+                    t.path_file,
+                    u.nama as nama_admin
+                FROM tugas AS t
+                JOIN users AS u ON t.admin_id = u.id
+                ORDER BY t.deadline ASC";
+                
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

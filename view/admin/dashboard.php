@@ -60,7 +60,7 @@
                         <?php
                             $avatar_path = (!empty($_SESSION['user_foto']) && file_exists($_SESSION['user_foto']))
                                 ? $_SESSION['user_foto']
-                                : 'https://i.pravatar.cc/150?u=admin' . $_SESSION['user_id'];
+                                : 'assets/img/foto_default.jpeg';
                         ?>
                         <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover">
                         <span class="font-medium text-gray-800"><?php echo htmlspecialchars($nama_admin); ?></span>

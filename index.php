@@ -3,12 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Muat autoloader Composer dan file .env di awal
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require __DIR__ . '/vendor/autoload.php';
     if (class_exists('Dotenv\Dotenv')) {
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-        $dotenv->load(); // Gunakan load() untuk memberikan error jika .env tidak ada
+        $dotenv->load(); 
     }
 }
 
@@ -59,6 +58,7 @@ $routes = [
     'logout' => [ 'file' => 'controller/Autentikasi.php', 'class' => 'Authcontroller', 'method' => 'logout' ],
     'adminDashboard' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'dashboard' ],
     'showUploadTugasForm' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'showUploadTugasForm' ],
+    'lihatTugas' => [ 'file' => 'controller/Mahasiswa.php', 'class' => 'MahasiswaController', 'method' => 'showTugasList' ],
     'uploadTugas' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'uploadTugas' ],
     'mahasiswaDashboard' => [ 'file' => 'controller/Mahasiswa.php', 'class' => 'MahasiswaController', 'method' => 'dashboard' ],
     'events' => [ 'file' => 'controller/Events.php', 'class' => 'EventsController', 'method' => 'list' ],

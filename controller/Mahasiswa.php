@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/../model/Tugas.php';
 class MahasiswaController {
 
     public function dashboard() {
@@ -8,14 +10,12 @@ class MahasiswaController {
             exit();
         }
         
-        // Ambil data pengguna yang sedang login dari session
         $user = [
             'nama' => $_SESSION['user_nama'],
             'nim' => $_SESSION['user_nim'] ?? 'N/A', // Gunakan NIM dari session
             'foto_path' => $_SESSION['user_foto'] ?? null
         ];
 
-        // Data untuk daftar mata kuliah
         $daftar_matakuliah = [
             [
                 'id' => 1,
@@ -44,14 +44,26 @@ class MahasiswaController {
         ];
 
         // Data dummy untuk "Online Users"
-        $online_users = [
-            ['nama' => 'Maren Maureen', 'nim' => '1094882001'],
-            ['nama' => 'Jenniffer Jane', 'nim' => '1094672000'],
-            ['nama' => 'Ryan Herwinds', 'nim' => '1094342003']
-        ];
         
         // Muat halaman view dan kirim data yang dibutuhkan
         require 'view/mahasiswa/dashboard.php';
+    }
+    public function showTugasList() {
+        // session_start();
+
+        if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'mahasiswa') {
+            header('Location: index.php?action=login');
+            exit();
+        }
+        
+        $tugasModel = new Tugas();
+        if (!$tugasModel || $tugasModel == null) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+        $daftar_tugas = $tugasModel->getAllTugas();
+
+        require 'view/mahasiswa/lihat_tugas.php';
     }
 }
 ?>

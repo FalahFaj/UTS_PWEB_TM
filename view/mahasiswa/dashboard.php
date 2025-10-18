@@ -39,9 +39,9 @@
                     <ion-icon name="grid-outline" class="text-2xl"></ion-icon>
                     <span class="font-semibold">Dashboard</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
+                <a href="index.php?action=lihatTugas" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
                     <ion-icon name="albums-outline" class="text-2xl"></ion-icon>
-                    <span>All Courses</span>
+                    <span>Daftar Tugas</span>
                 </a>
                 <a href="#" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
                     <ion-icon name="calendar-outline" class="text-2xl"></ion-icon>
@@ -133,7 +133,7 @@
                         <?php
                             $avatar_path = (!empty($user['foto_path']) && file_exists($user['foto_path']))
                                 ? $user['foto_path']
-                                : 'https://i.pravatar.cc/150?u=' . htmlspecialchars($user['nim']);
+                                : 'assets/img/foto_default.jpeg';
                         ?>
                         <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Avatar" class="w-12 h-12 rounded-full object-cover ml-4 shadow-md">
                     </div>
