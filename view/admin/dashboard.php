@@ -14,7 +14,7 @@
 
     <div class="flex min-h-screen">
         <aside class="w-64 flex flex-col bg-[#1e293b] text-white p-4">
-            <div class="text-2xl font-bold mb-10">ēCoursie</div>
+            <div class="text-2xl font-bold mb-10">TuGasin</div>
             <nav class="flex flex-col space-y-2">
                 <a href="#" class="flex items-center space-x-3 bg-violet-600 rounded-lg p-3">
                     <ion-icon name="grid-outline" class="text-2xl"></ion-icon>
