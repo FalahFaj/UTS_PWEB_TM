@@ -1,18 +1,34 @@
 <?php
-    require_once 'koneksi.php';
+require_once 'koneksi.php';
 
-    class User {
-        private $pdo;
+class User
+{
+    private $pdo;
 
-        public function __construct() {
-            $this->pdo = getPDO();
-        }
+    public function __construct()
+    {
+        $this->pdo = getPDO();
+    }
 
-        public function cariUserbyNIM($nim) {
-            if (!$this->pdo) return false;
-            $data_akun = $this->pdo->prepare("SELECT * FROM users WHERE nim = ?");
-            $data_akun->execute([$nim]);
-            return $data_akun->fetch(PDO::FETCH_ASSOC);
+    public function cariUserbyNIM($nim)
+    {
+        if (!$this->pdo)
+            return false;
+        $data_akun = $this->pdo->prepare("SELECT * FROM users WHERE nim = ?");
+        $data_akun->execute([$nim]);
+        return $data_akun->fetch(PDO::FETCH_ASSOC);
+    }
+    public function create($nama, $email, $password, $role, $nim, $foto_path)
+    {
+
+        try {
+            $sql = "INSERT INTO users (nama, email, password, role, nim, foto_path) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute([$nama, $email, $password, $role, $nim, $foto_path]);
+
+        } catch (PDOException $e) {
+            // ... (error handling) ...
         }
     }
+}
 ?>

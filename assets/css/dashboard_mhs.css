@@ -6,6 +6,47 @@ body {
     margin: 0;
     color: #333;
 }
+/* Layout: pastikan sidebar dan main berdampingan */
+aside.sidebar {
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+
+.main-card {
+    max-width: 1100px; /* lebar isi utama */
+    margin: 0 auto; /* center horizontally */
+    margin-left: 280px; /* sisakan ruang untuk sidebar */
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(30,41,59,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+    background-color: #ffffff; /* ubah jadi putih */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    position: relative;
+    z-index: 5; /* di atas background, di bawah sidebar jika sidebar perlu interaksi */
+    color: #1f2937; /* teks utama di dalam kartu jadi gelap */
+}
+
+/* Aturan warna teks khusus di dalam main-card untuk memastikan kontras */
+.main-card h1,
+.main-card h2,
+.main-card h3,
+.main-card p,
+.main-card span,
+.main-card a,
+.main-card button {
+    color: #1f2937 !important;
+}
+
+/* Jika ingin main selalu di atas sidebar visual (tapi sidebar clickable tetap di depan), naikkan z-index */
+@media (min-width: 1024px) {
+    .main-card { margin-left: 300px; }
+}
 .container {
     padding: 24px;
     max-width: 1200px;

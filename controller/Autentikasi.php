@@ -135,8 +135,8 @@ class Authcontroller
             $_SESSION['user_nama'] = $user['nama'];
             $_SESSION['user_role'] = $user['role'];
 
-            if ($user['role'] === 'dosen') {
-                header('Location: index.php?action=dosenDashboard');
+            if ($user['role'] === 'admin') {
+                header('Location: index.php?action=adminDashboard');
             } else {
                 header('Location: index.php?action=mahasiswaDashboard');
             }

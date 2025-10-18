@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>Dashboard Dosen</title>
+    <title>Dashboard Admin</title>
     <style>body { font-family: sans-serif; padding: 20px; }</style>
 </head>
 <body>
-    
-    <h1>Selamat Datang, <?php echo htmlspecialchars($nama_dosen); ?>! 👋</h1>
-    <p>Anda telah berhasil login sebagai **Dosen**.</p>
+
+    <h1>Selamat Datang, <?php echo htmlspecialchars($nama_admin); ?>! 👋</h1>
+    <p>Anda telah berhasil login sebagai **Admin**.</p>
     
     <p>Menu (akan dibuat nanti):</p>
     <ul>

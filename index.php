@@ -45,7 +45,9 @@ $routes = [
     'register' => [ 'file' => 'controller/Autentikasi.php', 'class' => 'Authcontroller', 'method' => 'tampilkanRegisterForm' ],
     'doRegister' => [ 'file' => 'controller/Autentikasi.php', 'class'=> 'Authcontroller', 'method'=> 'register'],
     'logout' => [ 'file' => 'controller/Autentikasi.php', 'class' => 'Authcontroller', 'method' => 'logout' ],
-    'dosenDashboard' => [ 'file' => 'controller/Dosen.php', 'class' => 'DosenController', 'method' => 'dashboard' ],
+    'adminDashboard' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'dashboard' ],
+    'showUploadTugasForm' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'showUploadTugasForm' ],
+    'uploadTugas' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'uploadTugas' ],
     'mahasiswaDashboard' => [ 'file' => 'controller/Mahasiswa.php', 'class' => 'MahasiswaController', 'method' => 'dashboard' ],
     'events' => [ 'file' => 'controller/Events.php', 'class' => 'EventsController', 'method' => 'list' ],
 ];
