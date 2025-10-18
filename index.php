@@ -42,10 +42,11 @@ function dispatchAction(string $action, array $routes)
 $routes = [
     'login' => [ 'file' => 'controller/Autentikasi.php', 'class' => 'Authcontroller', 'method' => 'tampilkanLogin' ],
     'doLogin' => [ 'file' => 'controller/Autentikasi.php', 'class' => 'Authcontroller', 'method' => 'login' ],
+    'register' => [ 'file' => 'controller/Autentikasi.php', 'class' => 'Authcontroller', 'method' => 'tampilkanRegisterForm' ],
+    'doRegister' => [ 'file' => 'controller/Autentikasi.php', 'class'=> 'Authcontroller', 'method'=> 'register'],
     'logout' => [ 'file' => 'controller/Autentikasi.php', 'class' => 'Authcontroller', 'method' => 'logout' ],
     'dosenDashboard' => [ 'file' => 'controller/Dosen.php', 'class' => 'DosenController', 'method' => 'dashboard' ],
     'mahasiswaDashboard' => [ 'file' => 'controller/Mahasiswa.php', 'class' => 'MahasiswaController', 'method' => 'dashboard' ],
-    // FullCalendar events endpoint
     'events' => [ 'file' => 'controller/Events.php', 'class' => 'EventsController', 'method' => 'list' ],
 ];
 
