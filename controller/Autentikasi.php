@@ -1,5 +1,7 @@
 <?php
-require_once 'model/User.php';
+// require_once 'model/User.php';
+require_once 'koneksi.php';
+
 class Authcontroller
 {
     public function tampilkanLogin()
@@ -11,6 +13,8 @@ class Authcontroller
     }
     public function register()
     {
+        require_once 'model/User.php';
+
         // 1. Ambil data POST seperti biasa
         $nama = $_POST['nama'];
         $email = $_POST['email'];
@@ -25,18 +29,18 @@ class Authcontroller
         // ... (Validasi password & email seperti sebelumnya) ...
         if ($password !== $confirm_password) { /* ... error ... */
         }
-        $userModel = new User();
+        $pdo = getPDO();
+        if (!$pdo) { /* handle connection error */ die("Koneksi database gagal."); }
+        $userModel = new User($pdo);
         if ($userModel->cariUserbyNIM($nim)) { /* ... error ... */
         }
 
 
-        // 3. PROSES UPLOAD FOTO (BAGIAN BARU)
-        // Cek apakah ada file yang di-upload dan tidak ada error
         if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
 
             $file = $_FILES['foto'];
             $file_name = $file['name'];
-            $file_tmp_name = $file['tmp_name']; // Lokasi file sementara
+            $file_tmp_name = $file['tmp_name']; 
             $file_size = $file['size'];
             $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
@@ -44,19 +48,15 @@ class Authcontroller
             $allowed_ext = ['jpg', 'jpeg', 'png'];
 
             if (in_array($file_ext, $allowed_ext)) {
-                // Cek ukuran file (misal: maks 5MB)
-                if ($file_size < 5000000) { // 5 juta byte = 5MB
+                if ($file_size < 5000000) {
 
-                    // Buat nama file unik agar tidak bentrok
-                    $new_file_name = "user_" . uniqid('', true) . "." . $file_ext;
+                    $new_file_name = $role . $nama . "." . $file_ext;
 
                     // Tentukan path tujuan
                     $target_dir = "assets/img/uploads/";
                     $target_path = $target_dir . $new_file_name;
 
-                    // Pindahkan file dari lokasi sementara ke folder tujuan
                     if (move_uploaded_file($file_tmp_name, $target_path)) {
-                        // Jika berhasil, simpan path ini ke database
                         $foto_path_to_db = $target_path;
                     } else {
                         $error = "Gagal memindahkan file. Pastikan folder 'assets' writable.";
@@ -80,17 +80,23 @@ class Authcontroller
         $success = $userModel->create($nama, $email, $password, $role, $nim, $foto_path_to_db);
 
         if ($success) {
-            // ... (redirect ke login) ...
+            $_SESSION['register_success'] = "Akun berhasil dibuat! Silakan login.";
+            header('Location: index.php?action=login');
+            exit();
         } else {
-            // ... (error) ...
+            $error = "Terjadi kesalahan saat membuat akun. Silakan coba lagi.";
+            require 'view/auth/register.php';
+            return;
         }
     }
 
     public function login()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        require_once 'model/User.php';
+
+        // if (session_status() === PHP_SESSION_NONE) {
+        //     session_start();
+        // }
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: index.php?action=login');
@@ -123,7 +129,9 @@ class Authcontroller
             exit();
         }
 
-        $userModel = new User();
+        $pdo = getPDO();
+        if (!$pdo) { /* handle connection error */ die("Koneksi database gagal."); }
+        $userModel = new User($pdo);
         $user = $userModel->cariUserbyNIM($nim);
         $passwordOk = false;
         if ($user && isset($user['password'])) {
@@ -134,6 +142,8 @@ class Authcontroller
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_nama'] = $user['nama'];
             $_SESSION['user_role'] = $user['role'];
+            $_SESSION['user_foto'] = $user['foto_path'];
+            $_SESSION['user_nim'] = $user['nim'];
 
             if ($user['role'] === 'admin') {
                 header('Location: index.php?action=adminDashboard');
@@ -159,9 +169,9 @@ class Authcontroller
 
     public function logout()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        // if (session_status() === PHP_SESSION_NONE) {
+        //     session_start();
+        // }
         session_destroy();
         header('Location: index.php?action=login');
         exit();

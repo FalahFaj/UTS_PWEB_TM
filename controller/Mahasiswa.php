@@ -2,16 +2,17 @@
 class MahasiswaController {
 
     public function dashboard() {
-        session_start();
 
         if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'mahasiswa') {
             header('Location: index.php?action=login');
             exit();
         }
         
+        // Ambil data pengguna yang sedang login dari session
         $user = [
             'nama' => $_SESSION['user_nama'],
-            'nim' => '242410103052'
+            'nim' => $_SESSION['user_nim'] ?? 'N/A', // Gunakan NIM dari session
+            'foto_path' => $_SESSION['user_foto'] ?? null
         ];
 
         // Data untuk daftar mata kuliah
@@ -22,7 +23,7 @@ class MahasiswaController {
                 'deskripsi' => 'Learn the basic operating system abstractions, mechanisms, and their implementations.',
                 'nama_dosen' => 'Mark Lee',
                 'bg_color' => 'bg-violet-100', // Warna background kartu
-                'icon_color' => 'text-violet-500' // Warna ikon
+                'icon_color' => 'text-violet-500' 
             ],
             [
                 'id' => 2,

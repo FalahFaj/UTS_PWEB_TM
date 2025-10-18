@@ -1,4 +1,16 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Muat autoloader Composer dan file .env di awal
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require __DIR__ . '/vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->load(); // Gunakan load() untuk memberikan error jika .env tidak ada
+    }
+}
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'login';
 

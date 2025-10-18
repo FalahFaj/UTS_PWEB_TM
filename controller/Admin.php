@@ -1,10 +1,11 @@
 <?php
 
 require_once 'model/Tugas.php';
+require_once 'model/User.php';
 class AdminController {
     
     public function dashboard() {
-        session_start();
+        // session_start();
 
         if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
             header('Location: index.php?action=login');
@@ -13,12 +14,46 @@ class AdminController {
 
         $nama_admin = $_SESSION['user_nama'];
 
+        $statistik_admin = [
+            'total_materi' => 52, // Contoh: Total materi yang sudah diunggah
+            'total_tugas' => 35,  // Contoh: Total tugas yang sudah dibuat
+            'total_admin' => 3,   // Contoh: Total admin (dosen)
+            'total_mahasiswa' => 248 // Contoh: Total mahasiswa terdaftar
+        ];
+
+        $daftar_matakuliah_admin = [
+            [
+                'id' => 1,
+                'judul' => 'Pemrograman Berbasis Web',
+                'deskripsi' => 'Materi dan Tugas terkait pengembangan aplikasi web dengan PHP & JavaScript.',
+                'dosen' => 'Dr. Budi Raharjo',
+            ],
+            [
+                'id' => 2,
+                'judul' => 'Jaringan Komputer',
+                'deskripsi' => 'Pengenalan konsep dasar jaringan, protokol, dan konfigurasi perangkat.',
+                'dosen' => 'Prof. Onno W. Purbo',
+            ],
+            [
+                'id' => 3,
+                'judul' => 'Struktur Data & Algoritma',
+                'deskripsi' => 'Studi tentang cara menyimpan dan mengolah data secara efisien.',
+                'dosen' => 'Ani Wijaya, M.T.',
+            ],
+            [
+                'id' => 4,
+                'judul' => 'Kecerdasan Buatan',
+                'deskripsi' => 'Pengantar konsep AI, Machine Learning, dan Deep Learning.',
+                'dosen' => 'Citra Lestari, Ph.D.',
+            ]
+        ];
+
         // Muat halaman view dashboard admin
         require 'view/admin/dashboard.php';
     }
 
     public function showUploadTugasForm() {
-        session_start();
+        // session_start();
         if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
             header('Location: index.php?action=login');
             exit();
@@ -83,8 +118,6 @@ class AdminController {
 
         if ($success) {
             $success_message = "Tugas berhasil di-upload!";
-            // Redirect kembali ke halaman dashboard atau halaman upload dengan pesan sukses
-            // Di sini kita tampilkan lagi form-nya dengan pesan sukses
             $success = $success_message;
             require 'view/admin/upload_tugas.php';
         } else {

@@ -23,7 +23,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="index.php?action=doUploadTugas" method="POST" enctype="multipart/form-data">
+        <form action="index.php?action=uploadTugas" method="POST" enctype="multipart/form-data">
             <div class="mb-4">
                 <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul Tugas</label>
                 <input type="text" id="judul" name="judul" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-violet-500" required>

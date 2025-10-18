@@ -130,8 +130,12 @@
                             </div>
                             <div class="text-sm text-gray-500"><?php echo htmlspecialchars($user['nim']); ?></div>
                         </div>
-                        <img src="https://i.pravatar.cc/150?u=<?php echo htmlspecialchars($user['nim']); ?>"
-                            alt="Avatar" class="w-12 h-12 rounded-full ml-4 shadow-md">
+                        <?php
+                            $avatar_path = (!empty($user['foto_path']) && file_exists($user['foto_path']))
+                                ? $user['foto_path']
+                                : 'https://i.pravatar.cc/150?u=' . htmlspecialchars($user['nim']);
+                        ?>
+                        <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Avatar" class="w-12 h-12 rounded-full object-cover ml-4 shadow-md">
                     </div>
                     <div class="bg-white p-5 rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.05)] mb-8">
                         <h3 class="text-gray-700 font-semibold mb-3">Kalender</h3>

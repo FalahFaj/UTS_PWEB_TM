@@ -1,13 +1,13 @@
 <?php
-require_once 'koneksi.php';
+// require_once 'koneksi.php';
 
 class User
 {
     private $pdo;
 
-    public function __construct()
+    public function __construct(PDO $pdo)
     {
-        $this->pdo = getPDO();
+        $this->pdo = $pdo;
     }
 
     public function cariUserbyNIM($nim)
