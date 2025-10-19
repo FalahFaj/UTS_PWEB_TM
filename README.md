@@ -1,6 +1,6 @@
 # TuGasin - Sistem Manajemen Tugas Online
 
-untuk login sebagai admin, masukkan\n
+untuk login sebagai admin, masukkan
 nim = 242410103052
 pass = ikanhiu123oke
 
