@@ -1,14 +1,16 @@
 # TuGasin - Sistem Manajemen Tugas Online
 
-<img width="1189" height="414" alt="image" src="https://github.com/user-attachments/assets/dcd0ae49-7bb9-4aaf-abc9-f5c1243ff303" />
+untuk login sebagai admin, masukkan
+nim = 242410103052
+pass = ikanhiu123oke
 
-**TuGasin** adalah aplikasi web sederhana yang dirancang untuk memfasilitasi manajemen tugas antara dosen dan mahasiswa. Aplikasi ini dibangun menggunakan PHP native dengan antarmuka yang modern menggunakan Tailwind CSS.
+**TuGasin** adalah aplikasi web sederhana yang dirancang untuk memfasilitasi manajemen tugas antara admin dan mahasiswa. Aplikasi ini dibangun menggunakan PHP native dengan menerapkan konsep MVC.
 
 ## ✨ Fitur Utama
 
-Aplikasi ini memiliki dua peran pengguna utama: **Admin (Dosen)** dan **Mahasiswa**.
+Aplikasi ini memiliki dua peran pengguna utama: **Admin** dan **Mahasiswa**.
 
-### 👨‍🏫 Fitur Admin (Dosen)
+### 👨‍🏫 Fitur Admin
 
 - **Dashboard Admin:** Menampilkan ringkasan statistik seperti total tugas, total mahasiswa, dll.
 - **Upload Tugas:** Membuat dan mempublikasikan tugas baru lengkap dengan judul, deskripsi, tenggat waktu, dan file lampiran.
@@ -31,11 +33,10 @@ Aplikasi ini memiliki dua peran pengguna utama: **Admin (Dosen)** dan **Mahasisw
 - **Frontend:**
   - HTML5
   - [Tailwind CSS](https://tailwindcss.com/)
-  - JavaScript (untuk interaktivitas UI seperti sidebar)
 - **Server:**
-  - Apache / Nginx (disarankan menggunakan XAMPP, WAMP, atau sejenisnya)
+  - Apache / Nginx 
 - **Database:**
-  - MySQL / MariaDB
+  - Postgresql cloud menggunakan supabase
 
 ## 🛠️ Instalasi & Konfigurasi
 
