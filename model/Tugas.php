@@ -47,5 +47,23 @@ class Tugas {
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getAllTugasForAdmin() {
+        $sql = "SELECT 
+                    t.id, 
+                    t.judul, 
+                    t.deadline, 
+                    u.nama as nama_admin
+                FROM tugas AS t
+                JOIN users AS u ON t.admin_id = u.id
+                ORDER BY t.deadline DESC";
+                
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getTugasById($tugas_id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM tugas WHERE id = ?");
+        $stmt->execute([$tugas_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

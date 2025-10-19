@@ -62,6 +62,10 @@ $routes = [
     'uploadTugas' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'uploadTugas' ],
     'mahasiswaDashboard' => [ 'file' => 'controller/Mahasiswa.php', 'class' => 'MahasiswaController', 'method' => 'dashboard' ],
     'events' => [ 'file' => 'controller/Events.php', 'class' => 'EventsController', 'method' => 'list' ],
+    'listTugasAdmin' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'showTugasListAdmin' ],
+    'lihatSubmissions' => [ 'file' => 'controller/Admin.php', 'class' => 'AdminController', 'method' => 'showSubmissionsForTugas' ],
+    'showKumpulTugas' => [ 'file' => 'controller/Mahasiswa.php', 'class' => 'MahasiswaController', 'method' => 'showKumpulTugasForm' ],
+    'doKumpulTugas' => [ 'file' => 'controller/Mahasiswa.php', 'class' => 'MahasiswaController', 'method' => 'doKumpulTugas' ],
 ];
 
 dispatchAction($action, $routes);

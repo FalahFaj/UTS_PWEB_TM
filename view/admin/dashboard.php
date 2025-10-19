@@ -25,14 +25,14 @@
                     <ion-icon name="cloud-upload-outline" class="text-2xl"></ion-icon>
                     <span>Upload Tugas</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
+                <a href="index.php?action=listTugasAdmin" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
                     <ion-icon name="book-outline" class="text-2xl"></ion-icon>
-                    <span>Kelola Materi</span>
+                    <span>Kelola Tugas</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
+                <!-- <a href="index.php?action=showUploadTugas" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
                     <ion-icon name="people-outline" class="text-2xl"></ion-icon>
                     <span>Kelola User</span>
-                </a>
+                </a> -->
                 <a href="#" class="flex items-center space-x-3 hover:bg-slate-700 rounded-lg p-3">
                     <ion-icon name="settings-outline" class="text-2xl"></ion-icon>
                     <span>Settings</span>

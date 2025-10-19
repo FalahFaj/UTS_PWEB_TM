@@ -45,6 +45,12 @@
         <main class="flex-1 p-8 overflow-y-auto">
             <h1 class="text-3xl font-bold text-gray-800 mb-8">Daftar Tugas</h1>
 
+            <?php if (isset($success_message)): ?>
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-6">
+                    <?php echo htmlspecialchars($success_message); ?>
+                </div>
+            <?php endif; ?>
+
             <div class="space-y-6">
 
                 <?php if (empty($daftar_tugas)): ?>
@@ -88,7 +94,7 @@
                                         Download
                                     </a>
                                 <?php endif; ?>
-                                <a href="#"
+                                <a href="index.php?action=showKumpulTugas&tugas_id=<?php echo $tugas['id']; ?>"
                                     class="px-4 py-2 bg-violet-600 text-white font-semibold rounded-lg text-sm hover:bg-violet-700">
                                     Kumpulkan
                                 </a>

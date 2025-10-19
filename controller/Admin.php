@@ -2,6 +2,7 @@
 
 require_once 'model/Tugas.php';
 require_once 'model/User.php';
+require_once 'model/Submission.php';
 class AdminController {
     
     public function dashboard() {
@@ -69,16 +70,14 @@ class AdminController {
             exit();
         }
 
-        // 1. Ambil data dari form
         $judul = $_POST['judul'];
         $deskripsi = $_POST['deskripsi'];
         $deadline = $_POST['deadline'];
-        $admin_id = $_SESSION['user_id']; // Ambil ID admin dari session
+        $admin_id = $_SESSION['user_id']; 
         
         $nama_file_db = null;
         $path_file_db = null;
 
-        // 2. Proses file jika di-upload
         if (isset($_FILES['file_tugas']) && $_FILES['file_tugas']['error'] === UPLOAD_ERR_OK) {
             $file = $_FILES['file_tugas'];
             $file_name = $file['name'];
@@ -111,7 +110,6 @@ class AdminController {
             }
         }
 
-        // 3. Simpan ke database
         $tugasModel = new Tugas();
         $success = $tugasModel->create($judul, $deskripsi, $deadline, $admin_id, $nama_file_db, $path_file_db);
 
@@ -123,6 +121,45 @@ class AdminController {
             $error = "Gagal menyimpan tugas ke database.";
             require 'view/admin/upload_tugas.php';
         }
+    }
+
+    public function showTugasListAdmin() {
+        if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $tugasModel = new Tugas();
+        $daftar_tugas = $tugasModel->getAllTugasForAdmin();
+
+        require 'view/admin/lihat_tugas_admin.php';
+    }
+
+    public function showSubmissionsForTugas() {
+        if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
+        $tugas_id = isset($_GET['tugas_id']) ? (int)$_GET['tugas_id'] : 0;
+
+        if ($tugas_id === 0) {
+            header('Location: index.php?action=listTugasAdmin');
+            exit();
+        }
+
+        $tugasModel = new Tugas();
+        $submissionModel = new Submission();
+
+        $tugas = $tugasModel->getTugasById($tugas_id); 
+        $daftar_submissions = $submissionModel->getSubmissionsByTugasId($tugas_id); 
+
+        if (!$tugas) {
+             header('Location: index.php?action=listTugasAdmin');
+            exit();
+        }
+        
+        require 'view/admin/lihat_submissions.php';
     }
 }
 ?>
