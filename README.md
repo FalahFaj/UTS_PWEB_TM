@@ -1,6 +1,6 @@
 # TuGasin - Sistem Manajemen Tugas Online
 
-untuk login sebagai admin, masukkan
+untuk login sebagai admin, masukkan\n
 nim = 242410103052
 pass = ikanhiu123oke
 
@@ -44,36 +44,22 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
 
 1.  **Clone Repository**
     ```bash
-    git clone https://github.com/username/nama-repo.git
-    cd nama-repo
+    git clone https://github.com/FalahFaj/UTS_PWEB_TM
+    cd UTS_PWEB_TM
     ```
 
 2.  **Setup Database**
-    - Buat database baru di phpMyAdmin (misalnya, `db_tugas_online`).
-    - Impor file `database.sql` (Anda perlu membuatnya terlebih dahulu dari struktur database Anda) ke dalam database yang baru dibuat.
+    - coba jalankan file koneksi.php secara independent, jika database tidak terkoneksi, lakukan 
 
 3.  **Konfigurasi Koneksi**
-    - Cari file konfigurasi database (misalnya `config/database.php` atau di dalam file model) dan sesuaikan dengan pengaturan database lokal Anda (nama host, nama database, user, password).
+    - Cari file konfigurasi database (misalnya `koneksi.php` atau di dalam file model) dan sesuaikan dengan pengaturan database lokal Anda (nama host, nama database, user, password).
 
 4.  **Install Dependencies**
     - Proyek ini menggunakan Composer untuk beberapa polyfill. Jalankan perintah berikut:
     ```bash
-    composer install
+    composer require vlucas/phpdotenv
     ```
 
 5.  **Jalankan Server**
-    - Pindahkan folder proyek ke dalam direktori `htdocs` (untuk XAMPP) atau `www` (untuk WAMP).
-    - Buka web server Anda (misalnya XAMPP Control Panel) dan jalankan Apache dan MySQL.
-    - Akses proyek melalui browser Anda, misalnya: `http://localhost/nama-folder-proyek/`
-
-## 📂 Struktur Folder
-
-```
-/
-├── assets/         # File CSS, JS, dan gambar
-├── controller/     # Logika bisnis dan kontrol alur aplikasi
-├── model/          # Interaksi dengan database
-├── view/           # File-file antarmuka (HTML/PHP)
-├── vendor/         # Dependensi dari Composer
-└── index.php       # Front Controller (titik masuk utama)
-```
+    - Buka file index.php
+    - Klik kanan terus pilih php serve project
